@@ -9,9 +9,4 @@ A comprehensive database of 385+ AI/ML professors across 36 top Indian institute
 - Email contacts and academic links
 - Export as CSV/JSON
 
-## Deploy
-This is a static site. Deploy to Vercel:
-```bash
-npm i -g vercel
-vercel
-```
+
