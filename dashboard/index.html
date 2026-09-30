@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian AI Professors Database</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header glass-panel">
+            <div class="header-content">
+                <div class="header-titles">
+                    <h1>Indian AI Professors Database</h1>
+                    <p class="subtitle">385 AI/ML Professors across 36 Top Indian Institutes (IITs, IISc, ISI, IIITs)</p>
+                </div>
+                <div class="header-actions">
+                    <div class="search-container">
+                        <i class="fa-solid fa-search search-icon"></i>
+                        <input type="text" id="global-search" placeholder="Search by name, institute, keywords...">
+                    </div>
+                    <div class="export-actions">
+                        <button id="btn-export-csv" class="btn btn-outline" aria-label="Export to CSV">
+                            <i class="fa-solid fa-file-csv"></i> CSV
+                        </button>
+                        <button id="btn-export-json" class="btn btn-outline" aria-label="Export to JSON">
+                            <i class="fa-solid fa-file-code"></i> JSON
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Filters Bar -->
+        <section class="filters-bar glass-panel">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="filter-institute">Institute</label>
+                    <select id="filter-institute">
+                        <option value="">All Institutes</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-domain">Domain</label>
+                    <select id="filter-domain">
+                        <option value="">All Domains</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-difficulty">Difficulty</label>
+                    <select id="filter-difficulty">
+                        <option value="">Any Difficulty</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-internship">Internship-Friendly</label>
+                    <select id="filter-internship">
+                        <option value="">Any</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-designation">Designation</label>
+                    <select id="filter-designation">
+                        <option value="">All Designations</option>
+                    </select>
+                </div>
+            </div>
+            <div class="filters-meta">
+                <div class="results-count">Showing <span id="count-display">0</span> results</div>
+                <div class="view-toggles">
+                    <button id="view-cards" class="btn btn-icon active" title="Cards View">
+                        <i class="fa-solid fa-border-all"></i>
+                    </button>
+                    <button id="view-table" class="btn btn-icon" title="Table View">
+                        <i class="fa-solid fa-table-list"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Navigation Tabs -->
+        <nav class="app-tabs glass-panel">
+            <button class="tab-btn active" data-target="tab-all">All Professors</button>
+            <button class="tab-btn" data-target="tab-domains">By Domain</button>
+            <button class="tab-btn" data-target="tab-top100">Top 100</button>
+            <button class="tab-btn" data-target="tab-roadmaps">Domain Roadmaps</button>
+            <button class="tab-btn" data-target="tab-emails">Email Templates</button>
+        </nav>
+
+        <!-- Content Area -->
+        <main class="app-main">
+            <!-- Tab: All Professors -->
+            <div id="tab-all" class="tab-pane active">
+                <div id="view-container-cards" class="view-container grid-view">
+                    <!-- Cards will be injected here -->
+                </div>
+                <div id="view-container-table" class="view-container table-view hidden">
+                    <div class="table-responsive glass-panel">
+                        <table id="professors-table">
+                            <thead>
+                                <tr>
+                                    <th data-sort="name">Name <i class="fa-solid fa-sort"></i></th>
+                                    <th data-sort="institute">Institute <i class="fa-solid fa-sort"></i></th>
+                                    <th data-sort="designation">Designation <i class="fa-solid fa-sort"></i></th>
+                                    <th>Domains</th>
+                                    <th data-sort="difficulty_level">Difficulty <i class="fa-solid fa-sort"></i></th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Table rows will be injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: By Domain -->
+            <div id="tab-domains" class="tab-pane">
+                <div id="domains-container" class="domains-grid">
+                    <!-- Domain clusters will be injected here -->
+                </div>
+            </div>
+
+            <!-- Tab: Top 100 -->
+            <div id="tab-top100" class="tab-pane">
+                <div class="top100-header">
+                    <h2>Top 100 AI/ML Professors</h2>
+                    <p>Ranked by research activity, publications, and internship friendliness.</p>
+                </div>
+                <div id="top100-container" class="grid-view">
+                    <!-- Top 100 Cards -->
+                </div>
+            </div>
+
+            <!-- Tab: Domain Roadmaps -->
+            <div id="tab-roadmaps" class="tab-pane">
+                <div id="roadmaps-container" class="roadmaps-list">
+                    <!-- Roadmaps will be injected here -->
+                </div>
+            </div>
+
+            <!-- Tab: Email Templates -->
+            <div id="tab-emails" class="tab-pane">
+                <div class="templates-layout">
+                    <div class="templates-sidebar glass-panel">
+                        <ul id="template-list">
+                            <!-- Template nav injected -->
+                        </ul>
+                    </div>
+                    <div class="template-viewer glass-panel">
+                        <h3 id="template-title">Select a Template</h3>
+                        <div class="template-actions">
+                            <button id="btn-copy-template" class="btn btn-primary"><i class="fa-solid fa-copy"></i> Copy to Clipboard</button>
+                        </div>
+                        <pre id="template-content" class="code-block">Select a template from the left to view its contents.</pre>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Detail Modal -->
+    <div id="detail-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <button class="modal-close" aria-label="Close modal"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body" id="modal-body-content">
+                <!-- Modal details injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Note: Expected to be provided or available -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
